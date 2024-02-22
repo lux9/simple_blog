@@ -8,11 +8,12 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
     @comment.post = Post.find(params[:post_id])
-    @comment.user = current_user
+    @comment.user = User.first
     if @comment.save
       redirect_to @comment.post, notice: 'Comment was successfully created.'
     else
-      render :new, status: :unprocessable_entity
+      @post = @comment.post
+      render 'posts/show', status: :unprocessable_entity
     end
   end
 

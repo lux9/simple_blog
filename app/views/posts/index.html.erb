@@ -1,0 +1,5 @@
+<% @posts.each do |post| %>
+  <p><strong><%= link_to post.title, post_path(post) %></strong></p>
+  <p><%= post.body %></p>
+  <%= render "post_last_comments", post: post %>
+<% end %>
