@@ -1,0 +1,9 @@
+  <% if post.comments.any? %>
+    <ul>
+      <% post.comments.each do |comment| %>
+        <li><%= comment.content %></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>No comments yet</p>
+<% end %>

@@ -1,0 +1,6 @@
+<p><%= @post.title %></p>
+<p><%= @post.body %></p>
+<%= render "comments/form", post: @post %>
+<%= render "posts/post_last_comments", post: @post %>
+
+<%= link_to "Back to home", root_path %>
