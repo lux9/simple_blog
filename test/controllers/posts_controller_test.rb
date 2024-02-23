@@ -21,14 +21,22 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should create post" do
+  test "should create post if user signed in" do
     assert_difference('Post.count') do
-      post posts_url, params: { post: { title: 'title', body: 'body', user_id: users(:one).id } }
+      user = users(:one)
+      sign_in user
+      post posts_url, params: { post: { title: 'title', body: 'body' } }
     end
 
     assert_redirected_to post_url(Post.last)
     follow_redirect!
     assert_response :success
+  end
+
+  test "should create post if no user signed in" do
+    assert_difference('Post.count', 0) do
+      post posts_url, params: { post: { title: 'title', body: 'body' } }
+    end
   end
 
   test "should not create post if no title" do
