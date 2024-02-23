@@ -43,6 +43,8 @@ User.all.each do |user|
   end
 end
 
+User.create!(email: "admin@mail.com", password: "simpleblog", admin: true)
+
 puts '-------------------'
 puts 'Ending seeds'
 seed_end_time = Time.now

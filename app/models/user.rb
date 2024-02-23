@@ -14,4 +14,8 @@ class User < ApplicationRecord
   def clear_username
     email.split("@").first.capitalize
   end
+
+  def admin?
+    admin
+  end
 end
