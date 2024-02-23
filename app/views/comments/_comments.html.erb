@@ -1,0 +1,14 @@
+<div class="mt-3 p-3">
+  <p>Comments (<span data-post-card-target="commentsCount"><%= comments.count %></span>)</p>
+  <ul data-post-card-target="comments" class="list-unstyled">
+    <% comments.last(4).each do |comment| %>
+      <li><%= render "comments/comment", comment: comment %></li>
+    <% end %>
+    <% if params[:action] == "show"  %>
+      <%= link_to "Load more comments...", post_path(params[:id]) %>
+    <% elsif comments.count > 4 %>
+      <%= link_to "More comments...", post_path(comments.first.post) %>
+    <% end %>
+    <li data-post-card-target="emptyCommentBox"><span><%= "No comments yet" if comments.empty? %></span></li>
+  </ul>
+</div>

@@ -1,6 +1,17 @@
-<p><%= @post.title %></p>
-<p><%= @post.body %></p>
-<%= render "comments/form", post: @post %>
-<%= render "posts/post_last_comments", post: @post %>
+<div class="modal-body">
+  <div class="col-lg-8 offset-lg-2" data-controller="post-card" data-post-id="<%= @post.id %>" data-post-card-target="post" >
+      <h1><span class="fw-bold"><%= @post.title %></span></h1>
+      <em class="text-secondary font-italic">by <%= @post.user.clear_username %> <%= time_ago_in_words(@post.created_at) %> ago</em>
 
-<%= link_to "Back to home", root_path %>
+    <p class="text-muted"><%= @post.body %></p>
+    <button class="btn btn-outline-primary" aria-label="Add comment" data-action="click->post-card#revealForm" data-post-card-target="button">Add Comment</button>
+    <%= render "posts/comment_box", post: @post %>
+
+    <!-- Comments Section -->
+    <div>
+      <%= render "comments/comments", comments: @post.comments %>
+    </div>
+
+    <%= link_to 'Back to home', root_path, class: 'btn btn-primary mt-3' %>
+  </div>
+</div>

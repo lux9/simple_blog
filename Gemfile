@@ -5,6 +5,10 @@ ruby "3.1.2"
 # Users setup
 gem "devise"
 
+# Frontend components
+gem "sassc-rails"
+gem 'hotwire-rails'
+
 # Fake data generator
 gem "faker"
 
@@ -69,6 +73,7 @@ group :development do
 end
 
 group :test do
+  gem "rails-controller-testing"
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"

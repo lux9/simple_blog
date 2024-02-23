@@ -10,4 +10,8 @@ class User < ApplicationRecord
   has_many :comments_on_my_posts, through: :posts, source: :comments
   
   ## Validations
+
+  def clear_username
+    email.split("@").first.capitalize
+  end
 end

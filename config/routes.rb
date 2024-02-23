@@ -4,7 +4,11 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Users routes
-  devise_for :users
+  devise_for :users, controllers: {
+    sessions: 'custom_sessions',
+    registrations: 'custom_registrations'
+  }
+  get "profile/:user_id", to: "users#profile", as: "profile"
   
   # Posts routes
   resources :posts do
