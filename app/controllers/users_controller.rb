@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   end
 
   def admin
-    @posts = Post.all.order(created_at: :desc)
+    @pagy, @posts = pagy(Post.all.order(created_at: :desc), items: 5)
   end
 
   private
