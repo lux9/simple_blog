@@ -1,6 +1,2 @@
-<% @posts.each do |post| %>
-  <p><strong><%= link_to post.title, post_path(post) %></strong></p>
-  <p><%= post.body %></p>
-  <%= render "post_last_comments", post: post %>
-<% end %>
-<%= render 'form' %>
+<h1>Welcome to SimpleBlog</h1>
+<%= render "posts/posts_grid", posts: @posts %>

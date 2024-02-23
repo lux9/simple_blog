@@ -1,0 +1,9 @@
+<button class="btn btn-outline-primary" aria-label="Add comment" data-action="click->post-card#revealForm" data-post-card-target="button">Add Comment</button>
+<%= form_with url: post_comments_path(post), method: :post, local: false, html: { class: 'd-none', 'data-post-card-target': 'form' }, data: { action: "submit->post-card#submit" } do |form| %>
+  <div class="form-group my-3">
+    <%= form.label :content, 'Content', class: 'form-label' %>
+    <%= form.text_field :content, name: 'comment[content]', id: 'content', class: 'form-control' %>
+  </div>
+  <div data-post-card-target="errorBox" class="error-box d-none alert alert-danger"></div>
+  <%= form.submit 'Submit', class: 'btn btn-success' %>
+<% end %>

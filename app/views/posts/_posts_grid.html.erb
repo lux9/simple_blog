@@ -1,0 +1,23 @@
+<div class="mt-5">
+  <% @posts.each do |post| %>
+    <div data-controller="post-card" data-post-id="<%= post.id %>" data-post-card-target="post" class="mb-4 p-4 shadow-sm border rounded bg-white">
+      <%= link_to post_path(post), data: { turbo_frame: "modal" }, class: "text-decoration-none" do %>
+        <div class="d-flex justify-content-between text-dark">
+          <div>
+            <span class="h5 fw-bold text-decoration-none color-black"><%= post.title %></span> by <%= post.user.clear_username %>
+          </div>
+          <div>
+            <i class="fa-solid fa-eye"></i>
+          </div>
+        </div>
+      <% end %>
+      <p class="mb-3 text-muted"><%= truncate(post.body, length: 100) %></p>
+      <%= render "posts/comment_box", post: post %>
+      <div class="mt-3">
+        <ul class="list-unstyled">
+          <%= render "posts/post_last_comments", post: post %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+</div>
