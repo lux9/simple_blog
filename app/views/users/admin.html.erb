@@ -18,7 +18,7 @@
     <div class="comments-section p-2">
     <p><%= post.comments.count %> comments</p>
       <% if post.comments.any? %>
-        <div class="overflow-auto" style="max-height: 150px;">
+        <div class="overflow-auto mt-2" style="max-height: 150px;">
           <%= render "comments/comments", comments: post.comments %>
         </div>
       <% end %>

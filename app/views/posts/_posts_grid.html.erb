@@ -24,7 +24,7 @@
       <%= render "posts/comment_box", post: post %>
       <div class="p-2">
         <p class="mt-3 mb-0">Comments (<span data-post-card-target="commentsCount"><%= post.comments.count %></span>)</p>
-        <div class="overflow-auto" style="max-height: 150px;">
+        <div class="overflow-auto mt-2" style="max-height: 150px;">
           <%= render "comments/comments", comments: post.comments.last(2) %>
         </div>
       </div>
