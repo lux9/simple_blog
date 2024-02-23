@@ -14,7 +14,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    @post.user = User.first
+    @post.user = current_user
     if @post.save
       redirect_to post_path(@post), notice: 'Post was successfully created.'
     else
@@ -27,7 +27,7 @@ class PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
-      redirect_to post_path, notice: 'Post was edited created.'
+      redirect_to post_path(@post), notice: 'Post was edited created.'
     else
       render :edit
     end

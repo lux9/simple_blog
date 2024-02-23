@@ -11,7 +11,10 @@
     <div>
       <%= render "comments/comments", comments: @post.comments %>
     </div>
-
+    <%= link_to "Edit post", edit_post_path, "data-bs-toggle": "modal", "data-bs-target": "#editPostModal", class: "btn btn-primary mt-3" %>
     <%= link_to 'Back to home', root_path, class: 'btn btn-primary mt-3' %>
   </div>
 </div>
+
+<%# Edit modal form (shared with new Post) %>
+<%= render "posts/form_modal", post: @post if @post.user == current_user %>
