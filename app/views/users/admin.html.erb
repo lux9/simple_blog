@@ -1,0 +1,38 @@
+<h1 class="text-center mb-5">Welcome to admin dashboard</h1>
+<%= render "shared/pagy_links" %>
+
+<% @posts.each do |post| %>
+  <div class="post card p-3 my-2">
+    <div class="d-flex justify-content-between">
+      <span>
+        <span class="h5 fw-bold text-decoration-none">"<%= post.title %>"</span> posted by <%= post.user.clear_username %> <em class="text-secondary"><%= post.created_at.strftime("%F") %></em>
+      </span>
+      <div class="admin-actions">
+        <%= link_to post, class: "text-decoration-none" do %>
+          <i class="text-secondary fa-solid fa-eye"></i>
+        <% end %>
+        <%= link_to post, method: :delete, data: { turbo_method: :delete, confirm: 'Are you sure?' } do %>
+          <i class="text-danger h5 fa-solid fa-trash"></i>
+        <% end %>
+      </div>
+
+    </div>
+    <p><%= post.body %>
+    
+    <% if post.comments.any? %>
+      <h5>Comments:</h5>
+      <ul>
+        <% post.comments.each do |comment| %>
+          <li>
+            <span class="small text-muted"><%= comment.content %></span>
+            <%= link_to comment, method: :delete, data: { turbo_method: :delete, confirm: 'Are you sure?' } do %>
+              <i class="text-danger h5 fa-solid fa-trash"></i>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+<% end %>
+
+<%= render "shared/pagy_links" %>

@@ -6,6 +6,7 @@ ruby "3.1.2"
 gem "devise"
 
 # Frontend components
+gem "pagy"
 gem "sassc-rails"
 gem 'hotwire-rails'
 
