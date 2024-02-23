@@ -1,0 +1,26 @@
+.pagy-links {
+  a {
+    color: grey;
+    margin: 0 5px;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    text-decoration: none;
+    transition: background-color 0.2s, color 0.2s;
+
+    &:hover {
+      color: #fff;
+      background-color: #0056b3;
+      text-decoration: none;
+    }
+  }
+
+  .active {
+    font-weight: bold;
+    color: #212529;
+    background-color: #e2e6ea;
+  }
+
+  .disabled {
+    display: none;
+  }
+}
