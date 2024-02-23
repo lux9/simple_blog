@@ -5,6 +5,10 @@ ruby "3.1.2"
 # Users setup
 gem "devise"
 
+# Frontend components
+gem "sassc-rails"
+gem 'hotwire-rails'
+
 # Fake data generator
 gem "faker"
 
