@@ -1,4 +1,4 @@
-<div class="">
+<div class="mt-3">
   <% posts.each do |post| %>
     <div data-controller="post-card" data-post-id="<%= post.id %>" data-post-card-target="post" class="mb-4 p-4 shadow-sm border rounded bg-white">
       <%= link_to post_path(post), data: { turbo_frame: "modal" }, class: "text-decoration-none" do %>
