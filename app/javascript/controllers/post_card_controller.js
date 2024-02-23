@@ -38,7 +38,9 @@ export default class extends Controller {
           let newComment = document.createElement("li");
           newComment.innerHTML = data;
           this.commentsTarget.insertBefore(newComment, this.commentsTarget.firstChild);
-          this.emptyCommentBoxTarget.innerHTML = ""
+          if (parseInt(this.commentsCountTarget.innerHTML) === 0) {
+            this.emptyCommentBoxTarget.innerHTML = ""
+          }
           this.commentsCountTarget.innerHTML = parseInt(this.commentsCountTarget.innerHTML, 10) + 1
         }
       })
