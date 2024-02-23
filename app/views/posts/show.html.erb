@@ -1,6 +1,15 @@
-<p><%= @post.title %></p>
-<p><%= @post.body %></p>
-<%= render "comments/form", post: @post %>
-<%= render "posts/post_last_comments", post: @post %>
+<div class="modal-body">
+  <div class="col-lg-8 offset-lg-2" data-controller="post-card" data-post-id="<%= @post.id %>" data-post-card-target="post" >
+      <h1><span class="fw-bold"><%= @post.title %></span> by <%= @post.user.clear_username %></h1>
 
-<%= link_to "Back to home", root_path %>
+    <p class="text-muted"><%= @post.body %></p>
+    <%= render "posts/comment_box", post: @post %>
+
+    <!-- Comments Section -->
+    <div>
+      <%= render "posts/post_last_comments", post: @post %>
+    </div>
+    
+    <%= link_to 'Back to home', root_path, class: 'btn btn-primary mt-3' %>
+  </div>
+</div>

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     sessions: 'custom_sessions',
     registrations: 'custom_registrations'
   }
+  get "profile/:user_id", to: "users#profile", as: "profile"
   
   # Posts routes
   resources :posts do

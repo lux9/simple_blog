@@ -1,0 +1,9 @@
+<h1>Welcome to <%= @user.clear_username %>'s posts:</h1>
+<% if user_signed_in? && @user == current_user && current_user.posts.empty? %>
+  <div class="d-flex">
+    <h5>You have no posts yet. Write your first post clicking here -> </h5>
+    <%= link_to "New Post", new_post_path, "data-bs-toggle": "modal", "data-bs-target": "#newPostModal", class: "btn btn-sm btn-primary" %>
+  </div>
+<% end %>
+
+<%= render "posts/posts_grid", posts: @posts %>
