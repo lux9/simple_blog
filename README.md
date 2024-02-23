@@ -1,24 +1,43 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Welcome to SimpleBlog
 
-Things you may want to cover:
+## **Ruby version:**
+**3.1.2**
 
-* Ruby version
+You can use RVM or rbenv for managing your Ruby installations.
 
-* System dependencies
+## **System dependencies**
+Uses PostgreSQL database
 
-* Configuration
+## **Configuration**
+To clone and set up the project, run the following commands:
 
-* Database creation
+```bash
+git clone git@github.com:lux9/simple_blog.git
 
-* Database initialization
+cd simple_blog
 
-* How to run the test suite
+bundle install
 
-* Services (job queues, cache servers, search engines, etc.)
+yarn install
+```
+## **Database creation**
+Create and migrate your database with:
+```bash
+rails db:create
 
-* Deployment instructions
+rails db:migrate
+```
+## **Database initialization**
 
-* ...
+Seed the database with initial data using:
+```bash
+rails db:seed
+```
+## **How to run the test suite**
+To run the tests, execute:
+
+```bash
+rails test
+```
