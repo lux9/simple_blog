@@ -1,10 +1,10 @@
 <div class="mt-5">
-  <% @posts.each do |post| %>
+  <% posts.each do |post| %>
     <div data-controller="post-card" data-post-id="<%= post.id %>" data-post-card-target="post" class="mb-4 p-4 shadow-sm border rounded bg-white">
       <%= link_to post_path(post), data: { turbo_frame: "modal" }, class: "text-decoration-none" do %>
         <div class="d-flex justify-content-between text-dark">
           <div>
-            <span class="h5 fw-bold text-decoration-none">"<%= post.title %>"</span> posted by <%= post.user.clear_username %> <em class="text-secondary"><%= time_ago_in_words(post.created_at) %> ago</em>
+            <span class="h5 fw-bold text-decoration-none">"<%= post.title %>"</span> posted by <%= post.user != current_user ? post.user.clear_username : "me" %> <em class="text-secondary"><%= time_ago_in_words(post.created_at) %> ago</em>
           </div>
           <div>
             <i class="fa-solid fa-eye"></i>
@@ -12,8 +12,8 @@
         </div>
         <p class="mb-3 text-muted"><%= truncate(post.body, length: 50) %></p>
       <% end %>
-      <button class="btn btn-outline-primary btn-sm" aria-label="Add comment" data-action="click->post-card#revealForm" data-post-card-target="button">Add Comment</button>
       <%= link_to "Read post", post_path(post), class: "btn btn-sm btn-outline-primary" %>
+      <button class="btn btn-outline-primary btn-sm" aria-label="Add comment" data-action="click->post-card#revealForm" data-post-card-target="button">Add Comment</button>
       <%= render "posts/comment_box", post: post %>
       <div class="mt-3">
         <ul class="list-unstyled">
@@ -21,5 +21,6 @@
         </ul>
       </div>
     </div>
+
   <% end %>
 </div>

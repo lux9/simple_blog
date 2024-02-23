@@ -4,14 +4,15 @@
       <em class="text-secondary font-italic">by <%= @post.user.clear_username %> <%= time_ago_in_words(@post.created_at) %> ago</em>
 
     <p class="text-muted"><%= @post.body %></p>
+    <%= link_to "Edit post", edit_post_path(@post), "data-bs-toggle": "modal", "data-bs-target": "#editPostModal", class: "btn btn-primary" if @post.user == current_user %>
     <button class="btn btn-outline-primary" aria-label="Add comment" data-action="click->post-card#revealForm" data-post-card-target="button">Add Comment</button>
+
     <%= render "posts/comment_box", post: @post %>
 
     <!-- Comments Section -->
     <div>
       <%= render "comments/comments", comments: @post.comments %>
     </div>
-    <%= link_to "Edit post", edit_post_path, "data-bs-toggle": "modal", "data-bs-target": "#editPostModal", class: "btn btn-primary mt-3" %>
     <%= link_to 'Back to home', root_path, class: 'btn btn-primary mt-3' %>
   </div>
 </div>
