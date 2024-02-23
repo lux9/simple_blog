@@ -3,5 +3,10 @@
     <small class="text-muted">
       Replied <%= time_ago_in_words(comment.created_at) %> ago by <%= link_to comment.user.email, profile_path(comment.user) %>
     </small>
+    <% if user_signed_in? && current_user.admin? && params[:action] == "admin" %>
+      <%= link_to comment, method: :delete, data: { turbo_method: :delete, confirm: 'Are you sure?' } do %>
+        <i class="text-danger h5 fa-solid fa-trash"></i>
+      <% end %>
+    <% end %>
   </p>
 </div>
