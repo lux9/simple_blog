@@ -13,6 +13,7 @@
   <body data-user-signed-in="<%= user_signed_in? %>">
     <%= render "shared/navbar" %>
     <div class="container mt-4">
+      <%= render "shared/homeback_button" if params[:action] != "index" %>
       <%= yield %>
     </div>
     <%= render "posts/form_modal", post: Post.new, action: "new" %>
