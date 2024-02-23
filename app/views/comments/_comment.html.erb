@@ -1,7 +1,10 @@
 <div class="mb-3">
-  <p><%= comment.content %>
+  <small class="text-muted"><%= comment.content %>
     <small class="text-muted">
-      Replied <%= time_ago_in_words(comment.created_at) %> ago by <%= link_to comment.user.email, profile_path(comment.user) %>
+      Replied <%= time_ago_in_words(comment.created_at) %> ago by <%= link_to comment.user.email, profile_path(comment.user), class: "text-decoration-none text-dark" %>
     </small>
-  </p>
+    <% if user_signed_in? && current_user.admin? && params[:action] == "admin" %>
+      <%= link_to "Delete", comment, method: :delete, class: "text-danger small", data: { turbo_method: :delete, confirm: 'Are you sure?' } %>
+    <% end %>
+  </small>
 </div>

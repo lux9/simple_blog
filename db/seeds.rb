@@ -9,7 +9,7 @@ if Rails.env == "development"
   destroy_old_records
 
   puts "Creating new users..."
-  10.times do
+  5.times do
     new_user = User.new(
       email: Faker::Artist.unique.name.downcase.gsub(" ", "_") + "@mail.com",
       password: "simpleblog"
@@ -21,7 +21,8 @@ if Rails.env == "development"
     5.times do
       new_post = new_user.posts.build(
         title: Faker::Restaurant.unique.name,
-        body: Faker::Restaurant.description
+        body: Faker::Restaurant.description,
+        created_at: Date.today - rand(30)
       )
       new_post.save!
       puts "post #{new_post.id} created"
@@ -32,17 +33,20 @@ end
 puts "Creating comments for users..."
 User.all.each do |user|
   commentable_posts = Post.where.not(user: user)
-  5.times do
+  25.times do
+    post = commentable_posts.sample
     new_comment = user.comments.build(
       content: Faker::Restaurant.review,
-      post: commentable_posts.sample,
-      user: user
+      post: post,
+      user: user,
+      created_at: Time.at(rand(post.created_at.to_i..Time.current.to_i))
     )
     new_comment.save!
     puts "comment #{new_comment.id} created for post #{new_comment.post.id}"
   end
 end
 
+puts "Generating admin user..."
 User.create!(email: "admin@mail.com", password: "simpleblog", admin: true)
 
 puts '-------------------'

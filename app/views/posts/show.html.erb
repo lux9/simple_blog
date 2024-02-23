@@ -1,21 +1,25 @@
-<div class="modal-body">
-  <div class="col-lg-8 offset-lg-2" data-controller="post-card" data-post-id="<%= @post.id %>" data-post-card-target="post" >
-      <h1><span class="fw-bold"><%= @post.title %></span></h1>
-      <em class="text-secondary font-italic">by <%= @post.user.clear_username %> <%= time_ago_in_words(@post.created_at) %> ago</em>
+<div class="col-lg-8 offset-lg-2" data-controller="post-card" data-post-id="<%= @post.id %>" data-post-card-target="post">
+  <h1><span class="fw-bold"><%= @post.title %></span></h1>
+  <em class="text-secondary font-italic">by <%= @post.user.clear_username %> <%= time_ago_in_words(@post.created_at) %> ago</em>
 
-    <p class="text-muted"><%= @post.body %></p>
+  <p><%= @post.body %></p>
+  <div class="d-flex justify-content-between">
+    <span>
+      <button class="btn btn-outline-primary" aria-label="Add comment" data-action="click->post-card#revealForm" data-post-card-target="button">Add Comment</button>
+    </span>
     <%= link_to "Edit post", edit_post_path(@post), "data-bs-toggle": "modal", "data-bs-target": "#editPostModal", class: "btn btn-primary" if @post.user == current_user %>
-    <button class="btn btn-outline-primary" aria-label="Add comment" data-action="click->post-card#revealForm" data-post-card-target="button">Add Comment</button>
+  </div>
+  <%= render "posts/comment_box", post: @post %>
 
-    <%= render "posts/comment_box", post: @post %>
-
-    <!-- Comments Section -->
-    <div>
+  <!-- Comments Section -->
+  <div class="p-2">
+    <p class="mt-3 mb-0">Comments (<span data-post-card-target="commentsCount"><%= @post.comments.count %></span>)</p>
+    <div class="overflow-auto mt-2" style="max-height: 250px;">
       <%= render "comments/comments", comments: @post.comments %>
     </div>
-    <%= link_to 'Back to home', root_path, class: 'btn btn-primary mt-3' %>
   </div>
+
 </div>
 
 <%# Edit modal form (shared with new Post) %>
-<%= render "posts/form_modal", post: @post if @post.user == current_user %>
+<%= render "posts/form_modal", post: @post, action: "edit" if @post.user == current_user %>
