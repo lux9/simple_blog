@@ -6,6 +6,16 @@ export default class extends Controller {
   connect() {
   }
 
+  revealForm() {
+    const userSignedIn = document.querySelector("body").dataset.userSignedIn === 'true';
+    if (!userSignedIn) {
+      window.location.href = `/users/sign_in?post_id=${this.postTarget.dataset.postId}`;
+    } else {
+      this.buttonTarget.classList.add("d-none")
+      this.formTarget.classList.remove("d-none")
+    }
+  }
+
   submit(event) {
     event.preventDefault()
     const url = this.formTarget.action
