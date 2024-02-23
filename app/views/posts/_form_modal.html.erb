@@ -1,13 +1,13 @@
-<div class="modal fade" id="newPostModal" tabindex="-1" aria-labelledby="newPostModalLabel" aria-hidden="true">
+<div class="modal fade" id="<%= post.id ? "edit" : "new" %>PostModal" tabindex="-1" aria-labelledby="<%= post.id ? "edit" : "new" %>PostModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="newPostModalLabel">New Post</h5>
+        <h5 class="modal-title" id="<%= post.id ? "edit" : "new" %>PostModalLabel"><%= post.id ? "edit" : "new" %> Post</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <%= turbo_frame_tag "new_post" do %>
-          <%= form_with(model: Post.new, url: posts_path, id: "new_post_form", local: true, class: "needs-validation", novalidate: true, data: { turbo: false }) do |form| %>
+        <%= turbo_frame_tag "#{post.id ? 'edit' : 'new'}_post" do %>
+          <%= form_with(model: post, url: post.id ? post_path(post) : posts_path , id: "#{ post.id ? "edit" : "new" }_post_form", local: true, class: "needs-validation", novalidate: true, data: { turbo: false }) do |form| %>
             <div class="mb-3">
               <%= form.label :title, class: 'form-label' %>
               <%= form.text_field :title, class: 'form-control', required: true %>

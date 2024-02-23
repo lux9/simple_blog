@@ -15,7 +15,7 @@
     <div class="container mt-5">
       <%= yield %>
     </div>
-    <%= render "posts/form_modal" %>
+    <%= render "posts/form_modal", post: Post.new %>
 
   </body>
 </html>
